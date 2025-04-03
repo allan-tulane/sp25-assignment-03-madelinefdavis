@@ -43,3 +43,24 @@ this algorthim always selects the largest possible coin at each step. since it i
 
 the work and span are both $O(log n)$
 
+
+**2a)** consider the demoninations = {10, 7, 1} and N=14
+
+if we were to use a greedy algrothim the first pick would be 10 followed by one being picked 4 times. This results in 5 coins being used. Instead an optimal solution would be to pick 7 twice. This means we would use 2 coins instead of 7.
+
+**2b** 
+
+a problem follow the optimal substructure property if an optimal solution can be constructed from breaking it into subproblems.
+
+**2c**
+
+  def min_coins(N, denominations):
+    dp = [float('inf')] * (N + 1)
+    dp[0] = 0
+
+    for i in range(1, N + 1):
+        for coin in denominations:
+            if i - coin >= 0:
+                dp[i] = min(dp[i], dp[i - coin] + 1)
+
+    return dp[N] if dp[N] != float('inf') else -1
