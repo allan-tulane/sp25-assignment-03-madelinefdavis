@@ -17,23 +17,23 @@ continue unti $N=0$
 
 code: 
 
-  def min_coins(N):
+    def min_coins(N):
   
-    coins = []
-    
-    while N > 0:
-    
-        highest_power = 1
-        
-        while highest_power * 2 <= N:
-        
-            highest_power *= 2
-            
-        coins.append(highest_power)
-        
-        N -= highest_power
-        
-    return coins
+      coins = []
+      
+      while N > 0:
+      
+          highest_power = 1
+          
+          while highest_power * 2 <= N:
+          
+              highest_power *= 2
+              
+          coins.append(highest_power)
+          
+          N -= highest_power
+          
+      return coins
 
 **1b)**
 
@@ -52,15 +52,24 @@ if we were to use a greedy algrothim the first pick would be 10 followed by one 
 
 a problem follow the optimal substructure property if an optimal solution can be constructed from breaking it into subproblems.
 
+Proof: say the optimal solution for N {Di1, Di2, ..., Din}
+if N-Di1 is not optimal then there is a smaller set of coins than N-Di1. this contridicts the idea that {Di1, Di2, ..., Din} so the optimal solution must be built from Di
+
 **2c**
 
-  def min_coins(N, denominations):
-    dp = [float('inf')] * (N + 1)
-    dp[0] = 0
+    def min_coins(N, denominations):
+  
+      dp = [float('inf')] * (N + 1)
+      
+      dp[0] = 0
+  
+      for i in range(1, N + 1):
+          for coin in denominations:
+              if i - coin >= 0:
+                  dp[i] = min(dp[i], dp[i - coin] + 1)
+  
+      return dp[N] if dp[N] != float('inf') else -1
 
-    for i in range(1, N + 1):
-        for coin in denominations:
-            if i - coin >= 0:
-                dp[i] = min(dp[i], dp[i - coin] + 1)
 
-    return dp[N] if dp[N] != float('inf') else -1
+work: O(N*K)
+span: O(N)
