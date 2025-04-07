@@ -53,7 +53,7 @@ if we were to use a greedy algrothim the first pick would be 10 followed by one 
 a problem follow the optimal substructure property if an optimal solution can be constructed from breaking it into subproblems.
 
 Proof: say the optimal solution for N {Di1, Di2, ..., Din}
-if N-Di1 is not optimal then there is a smaller set of coins than N-Di1. this contridicts the idea that {Di1, Di2, ..., Din} so the optimal solution must be built from Di
+if N-Di1 is not optimal then there is a smaller set of coins than N-Di1. this contridicts the idea that {Di1, Di2, ..., Din} so the optimal solution must be built from N - Di
 
 **2c**
 
